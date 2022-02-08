@@ -13,5 +13,7 @@ namespace DataAccessLayer.Abstract
         int Update(T p);
         int Delete(T p);
         T GetById(int id);
+      
+
     }
 }

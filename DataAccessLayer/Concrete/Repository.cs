@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,6 +29,8 @@ namespace DataAccessLayer.Concrete
             return _object.Find(id);
         }
 
+      
+
         public int Insert(T p)
         {
             _object.Add(p);
@@ -38,6 +41,8 @@ namespace DataAccessLayer.Concrete
         {
             return _object.ToList();
         }
+
+    
 
         public int Update(T p)
         {
