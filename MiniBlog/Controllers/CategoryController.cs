@@ -20,7 +20,8 @@ namespace MiniBlog.Controllers
 
         public PartialViewResult BlogDetailsCategoryList()
         {
-            return PartialView();
+            var categoryValues = cm.GetAll();
+            return PartialView(categoryValues);
         }
     }
 }

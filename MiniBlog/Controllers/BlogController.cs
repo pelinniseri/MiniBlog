@@ -94,14 +94,15 @@ namespace MiniBlog.Controllers
 
             return View();
         }
-        public PartialViewResult BlogCover()
+        public PartialViewResult BlogCover(int id)
         {
-            return PartialView();
+            var BlogDetailsList = bm.GetBlogByID(id);
+            return PartialView(BlogDetailsList);
         }
 
         public PartialViewResult BlogReadAll(int id)
         {
-            var BlogDetailsList = bm.BlogByID(id);
+            var BlogDetailsList = bm.GetBlogByID(id);
             return PartialView(BlogDetailsList);
         }
 

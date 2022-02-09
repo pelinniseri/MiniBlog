@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLayer.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,19 +10,20 @@ namespace MiniBlog.Controllers
     public class AuthorController : Controller
     {
         // GET: Author
-        public ActionResult Index()
+        BlogManager bm = new BlogManager();
+       
+        public PartialViewResult AuthorAbout(int id)
         {
-            return View();
+            var authordetails = bm.GetBlogByID(id);
+            return PartialView(authordetails);
         }
 
-        public PartialViewResult AuthorAbout()
+        public PartialViewResult AuthorPopularPost(int id)
         {
-            return PartialView();
-        }
+            var blogauthorid = bm.GetAll().Where(x => x.BlogId == id).Select(y => y.AuthorID).FirstOrDefault();
 
-        public PartialViewResult AuthorPopularPost()
-        {
-            return PartialView();
+            var authorblogs = bm.GetBlogByAuthor(blogauthorid);
+            return PartialView(authorblogs);
         }
     }
 }
