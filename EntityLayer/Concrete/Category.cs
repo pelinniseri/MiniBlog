@@ -14,6 +14,8 @@ namespace EntityLayer.Concrete
         public int CategoryID { get; set; }
         [StringLength(30)]
         public string CategoryName { get; set; }
+        [StringLength(500)]
+        public string CategoryDescription { get; set; }
 
         public ICollection<Blog> Blogs { get; set; }
     }

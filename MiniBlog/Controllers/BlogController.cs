@@ -107,9 +107,14 @@ namespace MiniBlog.Controllers
         }
 
 
-        public ActionResult BlogByCategory()
+        public ActionResult BlogByCategory(int id)
         {
-            return View();
+            var blogListByCat = bm.GetBlogByCategory(id);
+            var blogname = bm.GetBlogByCategory(id).Select(y => y.Category.CategoryName).FirstOrDefault();
+            var blogaciklama= bm.GetBlogByCategory(id).Select(y => y.Category.CategoryDescription).FirstOrDefault();
+            ViewBag.blogname = blogname;
+            ViewBag.blogaciklama = blogaciklama;
+            return View(blogListByCat);
         }
     }
 }

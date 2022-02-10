@@ -10,22 +10,26 @@ namespace MiniBlog.Controllers
     public class AboutController : Controller
     {
         // GET: About
+        AboutManager abm = new AboutManager();
         public ActionResult Index()
         {
+            var aboutcontent = abm.GetAll();
             
-            return View();
+            return View(aboutcontent);
         }
 
         public PartialViewResult Footer()
         {
-            AboutManager abm = new AboutManager();
+            
             var aboutconetentlist=abm.GetAll();
             return PartialView(aboutconetentlist);
         }
 
         public PartialViewResult MeetTheTeam()
         {
-            return PartialView();
+            AuthorManager autman = new AuthorManager();
+            var authlist = autman.GetAll();
+            return PartialView(authlist);
         }
     }
 }
