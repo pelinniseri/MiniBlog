@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList.Mvc;
+using EntityLayer.Concrete;
+using DataAccessLayer.Concrete;
 
 namespace MiniBlog.Controllers
 {
@@ -115,6 +117,90 @@ namespace MiniBlog.Controllers
             ViewBag.blogname = blogname;
             ViewBag.blogaciklama = blogaciklama;
             return View(blogListByCat);
+        }
+
+
+        public ActionResult AdminBlogList()
+        {
+            var bloglist = bm.GetAll();
+            return View(bloglist);
+        }
+
+        [HttpGet]
+        public ActionResult AddNewBlog()
+        {
+
+            Context c = new Context();
+            List<SelectListItem> values = (from x in c.Categories.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CategoryName,
+                                               Value = x.CategoryID.ToString()
+                                           }).ToList();
+            List<SelectListItem> valuesAuthor = (from y in c.Authors.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = y.AuthorName,
+                                               Value = y.AuthorID.ToString()
+                                           }).ToList();
+
+            ViewBag.values = values;
+            ViewBag.values2 = valuesAuthor;
+            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddNewBlog(Blog b)
+        {
+            bm.BlogAddBL(b);
+
+            return RedirectToAction("AdminBlogList");
+        }
+
+        public ActionResult DeleteBlog(int id)
+        {
+            bm.DeleteBL(id);
+
+            return RedirectToAction("AdminBlogList");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateBlog(int id)
+        {
+            Blog blogs = bm.FindBlog(id);
+            Context c = new Context();
+            List<SelectListItem> values = (from x in c.Categories.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CategoryName,
+                                               Value = x.CategoryID.ToString()
+                                           }).ToList();
+            List<SelectListItem> valuesAuthor = (from y in c.Authors.ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = y.AuthorName,
+                                                     Value = y.AuthorID.ToString()
+                                                 }).ToList();
+
+            ViewBag.values = values;
+            ViewBag.values2 = valuesAuthor;
+            
+            return View(blogs);
+        }
+        [HttpPost]
+        public ActionResult UpdateBlog(Blog b)
+        {
+            bm.UpdateBlog(b);
+            return RedirectToAction("AdminBlogList");
+        }
+
+        public ActionResult GetCommentByBlog(int id)
+        {
+            CommentManager cm = new CommentManager();
+            var commentlist = cm.CommentByBlog(id);
+
+            return View(commentlist);
         }
     }
 }

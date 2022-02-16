@@ -37,5 +37,26 @@ namespace MiniBlog.Controllers
             cm.CommentAdd(c);
             return PartialView();
         }
+        public ActionResult AdminCommentListTrue()
+        {
+            var commentlist = cm.CommentListTrue();
+            return View(commentlist);
+        }
+        public ActionResult AdminCommentListFalse()
+        {
+            var commentlist = cm.CommentListFalse();
+            return View(commentlist);
+        }
+        public ActionResult CommentStatusChangeToFalse(int id)
+        {
+            cm.ChangeCommentStatusToFalse(id);
+            return RedirectToAction("AdminCommentListTrue");
+        }
+        public ActionResult CommentStatusChangeToTrue(int id)
+        {
+            cm.ChangeCommentStatusToTrue(id);
+            return RedirectToAction("AdminCommentListFalse");
+        }
+
     }
 }

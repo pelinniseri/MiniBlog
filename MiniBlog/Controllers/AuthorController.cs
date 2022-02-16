@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace MiniBlog.Controllers
     {
         // GET: Author
         BlogManager bm = new BlogManager();
+        AuthorManager authorm = new AuthorManager();
        
         public PartialViewResult AuthorAbout(int id)
         {
@@ -24,6 +26,37 @@ namespace MiniBlog.Controllers
 
             var authorblogs = bm.GetBlogByAuthor(blogauthorid);
             return PartialView(authorblogs);
+        }
+
+        public ActionResult AuthorList()
+        {
+            var authorlists = authorm.GetAll();
+            return View(authorlists);
+        }
+
+        [HttpGet]
+        public ActionResult AddAuthor()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddAuthor(Author p)
+        {
+            authorm.AddAuthorBL(p);
+            return RedirectToAction("AuthorList");
+        }
+        [HttpGet]
+        public ActionResult AuthorEdit(int id)
+        {
+
+            Author author = authorm.FindAuthor(id);
+            return View(author);
+        }
+        [HttpPost]
+        public ActionResult AuthorEdit(Author p)
+        {
+            authorm.EditAuthor(p);
+            return RedirectToAction("AuthorList");
         }
     }
 }

@@ -23,5 +23,10 @@ namespace MiniBlog.Controllers
             var categoryValues = cm.GetAll();
             return PartialView(categoryValues);
         }
+        public ActionResult AdminCategoryList()
+        {
+            
+            return View();
+        }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.Author
+@{
+    ViewBag.Title = "AuthorEdit";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.HiddenFor(x => x.AuthorID)
+    @Html.Label("Yazarın Adı Soyadı")
+    @Html.TextBoxFor(x => x.AuthorName, new { @class = "form-control" })
+
+    <br />
+    @Html.Label("Resim Yolu")
+    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control" })
+    <br />
+    @Html.Label("Yazarın Statüsü")
+    @Html.TextBoxFor(x => x.AuthorTitle, new { @class = "form-control" })
+
+    <br />
+    @Html.Label("Hakkında")
+    @Html.TextAreaFor(x => x.AuthorAbout, 5, 20, new { @class = "form-control" })
+    <br />
+    @Html.Label("Yazar Yetenekler")
+    @Html.TextAreaFor(x => x.AboutShort, 5, 20, new { @class = "form-control" })
+    <br />
+    @Html.Label("Mail")
+    @Html.TextAreaFor(x => x.Mail, 5, 20, new { @class = "form-control" })
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextAreaFor(x => x.Password, 5, 20, new { @class = "form-control" })
+    <br />
+    @Html.Label("Telefon Numarası")
+    @Html.TextAreaFor(x => x.PhoneNumber, 5, 20, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+</form>
+
