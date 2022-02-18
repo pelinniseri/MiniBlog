@@ -125,6 +125,11 @@ namespace MiniBlog.Controllers
             var bloglist = bm.GetAll();
             return View(bloglist);
         }
+        public ActionResult AdminBlogList2()
+        {
+            var bloglist = bm.GetAll();
+            return View(bloglist);
+        }
 
         [HttpGet]
         public ActionResult AddNewBlog()

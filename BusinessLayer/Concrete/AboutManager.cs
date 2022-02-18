@@ -17,5 +17,16 @@ namespace BusinessLayer.Concrete
 
             return repoabout.List();
         }
+        public int UpdateAboutBM(About p)
+        {
+            About about = repoabout.Find(x => x.AboutId == p.AboutId);
+            about.AboutContent = p.AboutContent;
+            about.AboutContent2 = p.AboutContent2;
+            about.AboutImage1 = p.AboutImage1;
+            about.AboutId = p.AboutId;
+
+            about.AboutImage2 = p.AboutImage2;
+            return repoabout.Update(about);
+        }
     }
 }

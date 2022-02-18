@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,20 @@ namespace MiniBlog.Controllers
             AuthorManager autman = new AuthorManager();
             var authlist = autman.GetAll();
             return PartialView(authlist);
+        }
+        [HttpGet]
+        public ActionResult UpdateAboutList()
+        {
+
+            var about = abm.GetAll();
+            return View(about);
+        }
+        [HttpPost]
+        public ActionResult UpdateAbout(About p)
+        {
+
+            abm.UpdateAboutBM(p);
+            return RedirectToAction("UpdateAboutList");
         }
     }
 }

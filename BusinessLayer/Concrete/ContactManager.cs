@@ -15,11 +15,21 @@ namespace BusinessLayer.Concrete
         public int BLContactAdd(Contact c)
         {
             if(c.Mail=="" || c.Message==""|| c.Subject=="" || c.Name == "" || c.Surname == "" ||
-                c.Mail.Length<=10 || c.Subject.Length <= 3)
+                c.Mail.Length<=20 || c.Subject.Length <= 3)
             {
                 return -1;
             }
             return repocon.Insert(c);
         }
+
+        public List<Contact> GetAll()
+        {
+            
+            return repocon.List();
+        }
+        public Contact GetContactDetails(int id)
+        {
+            return repocon.Find(x => x.ContactId == id);
+        }   
     }
 }
