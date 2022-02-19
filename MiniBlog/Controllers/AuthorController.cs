@@ -13,13 +13,13 @@ namespace MiniBlog.Controllers
         // GET: Author
         BlogManager bm = new BlogManager();
         AuthorManager authorm = new AuthorManager();
-       
+        [AllowAnonymous]
         public PartialViewResult AuthorAbout(int id)
         {
             var authordetails = bm.GetBlogByID(id);
             return PartialView(authordetails);
         }
-
+        [AllowAnonymous]
         public PartialViewResult AuthorPopularPost(int id)
         {
             var blogauthorid = bm.GetAll().Where(x => x.BlogId == id).Select(y => y.AuthorID).FirstOrDefault();

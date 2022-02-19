@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace MiniBlog.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         // GET: Login
@@ -30,6 +31,26 @@ namespace MiniBlog.Controllers
             }
             else { return RedirectToAction("AuthorLogin", "Login"); }
             
+        }
+
+        [HttpGet]
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AdminLogin(Admin p)
+        {
+            Context c = new Context();
+            var userinfo = c.Admins.FirstOrDefault(x => x.Username == p.Username && x.Password == p.Password);
+            if (userinfo != null)
+            {
+                FormsAuthentication.SetAuthCookie(userinfo.Username, false);
+                Session["Username"] = userinfo.Username.ToString();
+                return RedirectToAction("AdminBlogList", "Blog");
+            }
+            else { return RedirectToAction("AdminLogin", "Login"); }
+
         }
     }
 }

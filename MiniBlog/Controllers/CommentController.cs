@@ -12,17 +12,19 @@ namespace MiniBlog.Controllers
     {
         // GET: Comment
         CommentManager cm = new CommentManager();
+
         public ActionResult Index()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public PartialViewResult CommentList(int id)
         {
             var commentlist = cm.CommentByBlog(id);
             
             return PartialView(commentlist);
         }
+        [AllowAnonymous]
         [HttpGet]
         public PartialViewResult LeaveComment(int id)
         {
@@ -30,7 +32,7 @@ namespace MiniBlog.Controllers
             return PartialView();
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public PartialViewResult LeaveComment(Comment c)
         {

@@ -17,7 +17,7 @@ namespace MiniBlog.Controllers
             var categoryValues = cm.GetAll();
             return View(categoryValues);
         }
-
+        [AllowAnonymous]
         public PartialViewResult BlogDetailsCategoryList()
         {
             var categoryValues = cm.GetAll();

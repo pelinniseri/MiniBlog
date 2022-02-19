@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MiniBlog.Controllers
 {
+    [AllowAnonymous]
     public class MailSubscribeController : Controller
     {
         // GET: MailSubscribe

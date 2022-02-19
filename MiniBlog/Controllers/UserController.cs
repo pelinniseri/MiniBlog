@@ -10,15 +10,20 @@ using System.Web.Security;
 
 namespace MiniBlog.Controllers
 {
-    [Authorize]
+    
     public class UserController : Controller
     {
         // GET: User
         UserProfileManager userProfileManager = new UserProfileManager();
         BlogManager bm = new BlogManager();
+        Context c = new Context();
         public ActionResult Index()
         {
-           
+            var mail = (string)Session["Mail"];
+            var adsoyad = c.Authors.Where(x => x.Mail == mail).Select(y => y.AuthorName).FirstOrDefault();
+            ViewBag.adsoyad = adsoyad;
+            var image = c.Authors.Where(x => x.Mail == mail).Select(y => y.AuthorImage).FirstOrDefault();
+            ViewBag.image = image;
             return View();
         }
         public PartialViewResult Partial1(string p)
