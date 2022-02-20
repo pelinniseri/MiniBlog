@@ -211,5 +211,12 @@ namespace MiniBlog.Controllers
 
             return View(commentlist);
         }
+        public ActionResult AuthorBlogList(int id)
+        {
+         
+            var blogs = bm.GetBlogByAuthor(id);
+            return View(blogs);
+        }
+       
     }
 }

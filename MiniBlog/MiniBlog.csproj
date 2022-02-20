@@ -2112,6 +2112,7 @@
     <Content Include="miniblog\fonts\icomoon\style.css" />
     <Content Include="miniblog\images\cebupacific-booking.jpg" />
     <Content Include="miniblog\images\hero_1.jpg" />
+    <Content Include="miniblog\images\images.png" />
     <Content Include="miniblog\images\img_1.jpg" />
     <Content Include="miniblog\images\img_2.jpg" />
     <Content Include="miniblog\images\img_3.jpg" />
@@ -2906,6 +2907,8 @@
     <Content Include="Views\User\AddNewBlog.cshtml" />
     <Content Include="Views\Error\Page404.cshtml" />
     <Content Include="Views\Login\AdminLogin.cshtml" />
+    <Content Include="Views\Blog\AuthorBlogList.cshtml" />
+    <Content Include="Views\Category\CategoryEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
