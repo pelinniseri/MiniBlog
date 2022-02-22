@@ -5,6 +5,7 @@
 }
 @{string color = "";}
 @{string caseName = "";}
+@{int puan=1;}
 <!DOCTYPE html>
 
 <html>
@@ -88,28 +89,31 @@
                     </thead>
 
                     <tbody>
+                        
                         @foreach (var item in Model)
                         {
-                            if (item.BlogRating >= 85 && item.BlogRating <= 100)
+                            puan = item.BlogRating * 10;
+                            if (puan >= 85 && puan <= 100)
                             {
                                 color = "badge badge-success";
                                 caseName = "Çok iyi";
                             }
-                            if (item.BlogRating < 85 && item.BlogRating >= 70)
+                            if (puan < 85 && puan >= 70)
                             {
                                 color = "badge badge-info";
                                 caseName = "Başarılı";
                             }
-                            if (item.BlogRating < 70 && item.BlogRating >= 50)
+                            if (puan < 70 && puan >= 50)
                             {
                                 color = "badge badge-dark";
                                 caseName = "Fena değil";
                             }
-                            if (item.BlogRating < 50)
+                            if (puan < 50)
                             {
                                 color = "badge badge-danger";
                                 caseName = "Vasat";
                             }
+
 
                             <tr>
 
@@ -120,12 +124,14 @@
                                 </td>
                                 <td>@item.BlogTitle</td>
 
+
+
                                 <td class="project_progress">
 
                                     <div class="progress progress-sm">
 
                                         <div class="@color" role="progressbar" aria-volumenow="@item.BlogRating"
-                                             aria-volumemin="0" aria-volumemax="100" style="width: @item.BlogRating%">
+                                             aria-volumemin="0" aria-volumemax="100" style="width: @puan%">
 
                                         </div>
 

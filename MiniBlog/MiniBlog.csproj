@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="Models\ChartBlog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin2\assets\css\nucleo-icons.css" />

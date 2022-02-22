@@ -6,7 +6,7 @@
 
 
 
-
+@{int puan = 1;}
 <!DOCTYPE html>
 
 <html>
@@ -69,19 +69,19 @@
 
                             <th style="width: 7%">
 
-                               Yazar
+                                Yazar
 
                             </th>
 
                             <th style="width: 10%">
 
-                               Beğeni Oranı
+                                Beğeni Oranı
 
                             </th>
 
                             <th style="width: 6%" class="text-center">
 
-                               Kategori
+                                Kategori
 
                             </th>
 
@@ -94,97 +94,102 @@
                     </thead>
 
                     <tbody>
-                       @foreach(var item in Model)
-                        {
-                            <tr>
+                    
 
-                                <td>
+                            @foreach (var item in Model)
+                            {
+                        <tr>
 
-                                    @item.BlogId
+                            <td>
 
-                                </td>
-                                <td>@item.BlogTitle</td>
+                                @item.BlogId
+
+                            </td>
+                            <td>@item.BlogTitle</td>
 
 
-                                <td>
+                            <td>
 
-                                    <ul class="list-inline">
+                                <ul class="list-inline">
 
-                                        <li class="list-inline-item">
-                                            
-                                            <img alt="Avatar" class="table-avatar" src="@item.Author.AuthorImage">
+                                    <li class="list-inline-item">
 
-                                        </li>
+                                        <img alt="Avatar" class="table-avatar" src="@item.Author.AuthorImage">
 
-                                       
+                                    </li>
 
-                                    </ul>
 
-                                </td>
 
-                                <td class="project_progress">
+                                </ul>
 
-                                    <div class="progress progress-sm">
+                            </td>
 
-                                        <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
+                            <td class="project_progress">
 
-                                        </div>
+                                <div class="progress progress-sm">
+                                    @{puan = item.BlogRating * 10;
+                                    }
+                                    <div class="badge badge-success" role="progressbar" aria-volumenow="@item.BlogRating"
+                                         aria-volumemin="0" aria-volumemax="100" style="width: @puan%">
 
                                     </div>
 
-                                    <small>
+                                </div>
 
-                                        57% Complete
-
-                                    </small>
-
-                                </td>
-
-                                <td class="project-state">
-
-                                    <span class="badge badge-success">@item.Category.CategoryName</span>
-
-                                </td>
-
-                                <td class="project-actions text-right">
-
-                                    <a class="btn btn-primary btn-sm" href="/Blog/BlogDetails/@item.BlogId">
-
-                                        <i class="fas fa-folder">
-
-                                        </i>
-
-                                        Sitede Gör
-
-                                    </a>
-
-                                    <a class="btn btn-info btn-sm" href="/Blog/UpdateBlog/@item.BlogId">
-
-                                        <i class="fas fa-pencil-alt">
-
-                                        </i>
-
-                                        Düzenle
-
-                                    </a>
-
-                                    <a class="btn btn-danger btn-sm" href="/Blog/DeleteBlog/@item.BlogId">
-
-                                        <i class="fas fa-trash">
-
-                                        </i>
-
-                                        Sil
-
-                                    </a>
-
-                                </td>
-
-                            </tr>
-                        }
+                                <small>
 
 
-                    </tbody>
+                                    Puan : @item.BlogRating
+
+                                </small>
+
+                            </td>
+
+                            <td class="project-state">
+
+                                <span class="badge badge-success">@item.Category.CategoryName</span>
+
+                            </td>
+
+                            <td class="project-actions text-right">
+
+                                <a class="btn btn-primary btn-sm" href="/Blog/BlogDetails/@item.BlogId">
+
+                                    <i class="fas fa-folder">
+
+                                    </i>
+
+                                    Sitede Gör
+
+                                </a>
+
+                                <a class="btn btn-info btn-sm" href="/Blog/UpdateBlog/@item.BlogId">
+
+                                    <i class="fas fa-pencil-alt">
+
+                                    </i>
+
+                                    Düzenle
+
+                                </a>
+
+                                <a class="btn btn-danger btn-sm" href="/Blog/DeleteBlog/@item.BlogId">
+
+                                    <i class="fas fa-trash">
+
+                                    </i>
+
+                                    Sil
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+                            }
+
+
+                        </tbody>
 
                 </table>
 
